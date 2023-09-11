@@ -1,0 +1,19 @@
+<!-- inheritance of base.html into this page -->
+{% extends 'employeeapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- {% comment %} <p>Bye</p> {% endcomment %} -->
+<form action="" method ="post" autocomplete="off">
+    {% csrf_token %}
+{{form|crispy}}
+<div class="row">
+    <div class="col-md-8">
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+    </div>
+    <div class="col-md-4">
+        <a href="{% url 'employee_list' %}" class="btn btn-secondary btn-block btn-lg">Back to list</a>
+    </div>
+</div>
+</form>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'employeeapp/base.html' %}
+{% block content %}
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>FullName</th>
+            <th>Mobile</th>
+            <th>Position</th>
+            <th><a href="{% url 'employee_insert' %}" class="btn  btn-outline-success">Add New</a> </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employee_list  %}
+        <tr>
+            <td>{{employee.Fullname}}</td>
+            <td>{{employee.Mobile}}</td>
+            <td>{{employee.position}}</td>
+            <td><a href="{% url 'employee_update' employee.id %}" class ="btn text-secondary px-0"><i class="fa fa-pencil" aria-hidden="true"></i>
+                <form action="{% url 'employee_delete' employee.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
